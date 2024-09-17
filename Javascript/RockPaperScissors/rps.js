@@ -77,7 +77,8 @@ function getHumanChoice() {
 let humanScore = 0;
 let computerScore = 0;
 
-// Step 3: Decide on the winner
+
+
 
 //Step 5: Write the logic to play a single round
 //Your game will be played round by round.
@@ -91,5 +92,10 @@ let computerScore = 0;
 // Write the code for your playRound function to console.log a string value representing the round winner, such as: “You lose! Paper beats Rock”.
 // Increment the humanScore or computerScore variable based on the round winner.
 
+
+
 let computerChoice = getComputerChoice();
 let humanChoice = getHumanChoice();
+
+function playRound(humanChoice, computerChoice) {
+}
