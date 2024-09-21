@@ -10,18 +10,13 @@
 // the player must play first
 // the winner is the one who reached a score of 3
 
-
 // 2- Divide the problem :
 
 // Step 1: Capture the user's choice (rock paper scissors) (done)
-
 // Step 2: Generate the computer's choice (rock paper or scissors) (done)
-
-// Step 3: Decide on the winner
-// 
-
-// Step 4: Log rounds
-// Step 5: repeat
+// Step 3: Decide on the winner (done)
+// Step 4: Log rounds (done)
+// Step 5: repeat (???)
 
 // TOP asks me to proceed differently, i'll follow them as they are my sensei.
 
@@ -43,33 +38,23 @@ function getComputerChoice() {
   let randomInt = randomNumber();
 
   if (randomInt == 0) {
-    console.log("Rock");
+    return "Rock";
   } else if (randomInt == 1) {
-    console.log("Paper");
+    return "Paper";
   } else {
-    console.log("Scissors");
+    return "Scissors";
   }
 }
+// step 3 :Write the logic to get the human choice
 
-// step 1 :Write the logic to get the human choice
+//Make your function’s humanChoice parameter case-insensitive so that players
+//can input “rock”, “ROCK”, “RocK”, or other variations :
 
-//Create a new function named getHumanChoice.
-// Write the code so that getHumanChoice will return one of the valid choices depending on what the user inputs.
-// Hint: Use the prompt method to get the user’s input.
-// Test what your function returns by using console.log.
-
-//
 function getHumanChoice() {
-  let humanChoice = prompt("Rock, Paper or Scissors?");
-  if (
-    humanChoice == "Rock" ||
-    humanChoice == "Paper " ||
-    humanChoice == "Scissors "
-  ) {
-    console.log(`You picked ${humanChoice}`);
-  } else {
-    alert("Do you even know how to play the game?");
-  }
+  let humanInput = prompt("Rock, Paper or Scissors?");
+  humanInput =
+    humanInput.charAt(0).toUpperCase() + humanInput.slice(1).toLowerCase();
+  return humanInput;
 }
 
 // Step 4: Log rounds
@@ -77,25 +62,50 @@ function getHumanChoice() {
 let humanScore = 0;
 let computerScore = 0;
 
-
-
-
 //Step 5: Write the logic to play a single round
-//Your game will be played round by round.
-//You will write a function that takes the human and computer player choices as arguments,
-//plays a single round, increments the round winner’s score and logs a winner announcement.
 
-// Create a new function named playRound.
-// Define two parameters for playRound: humanChoice and computerChoice. 
-// Use these two parameters to take the human and computer choices as arguments.
-// Make your function’s humanChoice parameter case-insensitive so that players can input “rock”, “ROCK”, “RocK”, or other variations.
-// Write the code for your playRound function to console.log a string value representing the round winner, such as: “You lose! Paper beats Rock”.
-// Increment the humanScore or computerScore variable based on the round winner.
+// big problem : decide on a winner.
+// smaller problem:capture the functions results into the playRound function
+// smaller problem: set the conditions for winners : rock > scissors ; scissors > paper ; paper > rock
+//
 
+//Step 6: Write the logic to play the whole game
 
+// The problem is to repeat rockPaperScissors until either player or computer
+// reached 3.
 
-let computerChoice = getComputerChoice();
-let humanChoice = getHumanChoice();
+// Step 1 : get the game to repeat
+
+// Step 1: Capture the player's choice
+// step 2: Capture the computer's Choice
+// step 3: Decide on the winner
+// step 4: re-initialize the variables
+// step 5: Captures the player's choice
+// step 6: Capture the computer's Choice
+// step 7: Decide on the winner
 
 function playRound(humanChoice, computerChoice) {
+  if (humanChoice == "Rock" && computerChoice == "Scissors") {
+    humanScore++;
+    console.log("You won ! Rock beats Scissors");
+  } else if (humanChoice == "Paper" && computerChoice == "Rock") {
+    humanScore++;
+    console.log("You won ! Paper beats Rock");
+  } else if (humanChoice == "Scissors" && computerChoice == "Paper") {
+    humanScore++;
+    console.log("You won ! Scissors shred Paper");
+  } else if (computerChoice == "Rock" && humanChoice == "Scissors") {
+    computerScore++;
+    console.log("You lose ! Rock beats Scissors");
+  } else if (computerChoice == "Paper" && humanChoice == "Rock") {
+    computerScore++;
+    console.log("You lose ! Paper beats Rock");
+  } else if (computerChoice == "Scissors" && humanChoice == "Paper") {
+    computerScore++;
+    console.log("You lose ! Scissors beats Paper");
+  }
 }
+let humanSelection = getHumanChoice();
+let computerSelection = getComputerChoice();
+
+playRound(humanSelection, computerSelection);
